@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: poc-event-hub-spring
+  cloud:
+    azure:
+      eventhubs:
+        namespace: ${EVENTHUBS_NAMESPACE}
+        profile:
+          tenant-id: ${TENANT_ID}
+        credential:
+          client-id: ${CLIENT_ID}
+          client-secret: ${CLIENT_SECRET}
+    stream:
+      bindings:
+        produceMessageToARA-out-0:
+          destination: ${AZURE_EVENTHUB_NAME}
+          group: $Default
+          producer:
+            error-channel-enabled: true
+            poller:
+              initial-delay: 0
+              fixed-delay: 1000
+      output-bindings: produceMessageToARA
+    function:
+      definition: produceMessageToARA
