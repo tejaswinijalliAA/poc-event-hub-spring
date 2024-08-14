@@ -53,7 +53,12 @@
         </dependency>
         <dependency>
             <groupId>com.azure.spring</groupId>
-            <artifactId>spring-cloud-azure-stream-binder-servicebus</artifactId>
+            <artifactId>spring-cloud-azure-stream-binder-eventhubs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-identity</artifactId>
+            <version>1.13.2</version>
         </dependency>
     </dependencies>
     <dependencyManagement>

@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Sinks;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class ProducerService {
 
     private final Sinks.Many<Message<String>> araMessageSinks;
+
+    public ProducerService(Sinks.Many<Message<String>> araMessageSinks){this.araMessageSinks = araMessageSinks;}
 
     public void produceMessage(String message){
         log.info ("sending message {}", message);
