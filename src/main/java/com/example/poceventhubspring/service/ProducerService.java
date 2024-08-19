@@ -1,5 +1,6 @@
 package com.example.poceventhubspring.service;
 
+import com.example.poceventhubspring.connectors.EventHubConnector;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.integration.support.MessageBuilder;
@@ -9,14 +10,14 @@ import reactor.core.publisher.Sinks;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class ProducerService {
 
-    private final Sinks.Many<Message<String>> araMessageSinks;
+    private final EventHubConnector eventHubConnector;
 
-    public ProducerService(Sinks.Many<Message<String>> araMessageSinks){this.araMessageSinks = araMessageSinks;}
-
-    public void produceMessage(String message){
-        log.info ("sending message {}", message);
-        araMessageSinks.emitNext (MessageBuilder.withPayload (message).build (), Sinks.EmitFailureHandler.FAIL_FAST);
+    public void publishMessage(String message){
+        log.info ("Publishing message: {}", message);
+        eventHubConnector.publishMessage (message);
+        log.info ("Published message to event hub");
     }
 }

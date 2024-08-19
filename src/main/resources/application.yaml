@@ -12,14 +12,15 @@ spring:
           client-secret: ${CLIENT_SECRET}
     stream:
       bindings:
-        produceMessageToARA-out-0:
+        supply-out-0:
           destination: ${AZURE_EVENTHUB_NAME}
           group: $Default
+          binder: eventhubs
           producer:
             error-channel-enabled: true
             poller:
               initial-delay: 0
               fixed-delay: 1000
-      output-bindings: produceMessageToARA
+      output-bindings: supply
     function:
-      definition: produceMessageToARA
+      definition: supply
