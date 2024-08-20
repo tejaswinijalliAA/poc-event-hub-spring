@@ -16,7 +16,7 @@ public class ProducerController {
 
     @PostMapping("/publish")
     public ResponseEntity<String> produceMessage(@RequestBody String message){
-        producerService.produceMessage (message);
+        producerService.publishMessage (message);
         return ResponseEntity.ok ("Message sent to eventhub");
     }
 }
